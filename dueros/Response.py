@@ -28,7 +28,7 @@ class Response(Base):
         self.session = session
         self.nlu = nlu
         self.source_type = self.request.get_bot_id()
-        self.should_end_session = True
+        self.should_end_session = False
         self.need_determine = None
         self.expect_speech = None
         self.fallback = None

@@ -8,9 +8,15 @@
 """
     desc:pass
 """
+import os
+import sys
+import json
+pwd = os.path.dirname(os.path.realpath(__file__))
+parentDir = os.path.dirname(pwd)
+sys.path.append(parentDir)
 #默认使用个税查询技能， 如果需要切换自己的技能  注意需要要更换成自己的Bot
-from dueros.samples.personal_income_tax.Bot import Bot
-from Bot import Bot
+# from dueros.samples.personal_income_tax.Bot import Bot
+from dueros.samples.xichuangzhu.Bot import Bot
 import dueros.Log as Log
 from dueros.Constants import constants
 #配置日志
@@ -21,6 +27,7 @@ def application(environ, start_response):
         request_body_size = int(environ.get('CONTENT_LENGTH', 0))
     except(ValueError):
         request_body_size = 0
+    # print('environ = %s\n' % environ)
     request_body = environ['wsgi.input'].read(request_body_size).decode('utf-8')
     print('request_body = %s\n' % request_body)
     if not request_body:
@@ -29,8 +36,12 @@ def application(environ, start_response):
     bot = Bot(request_body)
 
     #验证签名enableVerifyRequestSign  disableVerifyRequestSign 关闭验证签名
-    bot.init_certificate(environ).enable_verify_request_sign()
-    # bot.initCertificate(environ).disableVerifyRequestSign()
+    # bot.init_certificate(environ).enable_verify_request_sign()
+    bot.init_certificate(environ).disable_verify_request_sign()
+
+
+
+
 
     #数据统计相关配置
     #是否开启数据统计功能

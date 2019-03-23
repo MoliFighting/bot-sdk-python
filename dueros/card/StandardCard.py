@@ -21,5 +21,6 @@ class StandardCard(BaseCard):
         self.data['type'] = CardType.CARD_TYPE_STANDARD
 
 
+
 if __name__ == '__main__':
     pass

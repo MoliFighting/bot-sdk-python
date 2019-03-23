@@ -55,7 +55,7 @@ class Bot(Base):
         """
 
         self._certificate = Certificate(environ, self.request_data, private_key)
-        return self
+        return self._certificate
 
     def enable_verify_request_sign(self):
         """
